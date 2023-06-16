@@ -6,7 +6,7 @@ import { FiSettings, FiLogOut, FiMenu } from 'react-icons/fi';
 import { FaGlobe } from 'react-icons/fa';
 
 const Sidebar = ({ children }) => {
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(true);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   useEffect(() => {
