@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BsPersonFill, BsThreeDotsVertical } from 'react-icons/bs';
 import { data } from '../data/data.js';
-import { MapContainer, TileLayer, useMap } from 'react-leaflet';
 
 const maps = () => {
   const coordinates = { lat: 0, lng: 0 };
