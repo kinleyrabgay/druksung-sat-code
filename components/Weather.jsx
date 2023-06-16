@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Loader from './Loader';
 
 const Weather = () => {
   const [weather, setWeather] = useState(null);
@@ -54,7 +55,10 @@ const Weather = () => {
       </div>
       <div className="border-b-1 border-gray-300 my-2" />
       {isLoading ? (
-        <p>Loading weather data...</p>
+        // <p>Loading weather data...</p>
+        <div>
+          <Loader />
+        </div>
       ) : (
         <div className="flex justify-between">
           <div>

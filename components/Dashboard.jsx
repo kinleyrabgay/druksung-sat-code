@@ -4,11 +4,12 @@ import Weather from './Weather';
 import Image from 'next/image';
 import { preview } from '@/assets';
 import Loader from './Loader';
+// relative bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-3 lg:h-96 md:h-96 flex sm:h-96 justify-center items-center
 
 const GpsData = ({ data }) => (
-  <div className="justify-start bg-gray-100 rounded-lg py-4">
-    <p className="text-black font-bold text-2xl">{data.title}</p>
-    <div className="border-b-1 border-gray-300 my-2" />
+  <div className="justify-center bg-gray-50 border border-gray-300 text-gray-900 rounded-lg p-4">
+    <p className="text-black font-bold text-2xl text-center">{data.title}</p>
+    <div className="border-b-1 border-gray-300 my-4" />
     <div className="grid grid-cols-2 mt-4 gap-y-4 gap-x-4">
       {data.values.map((item) => (
         <div key={item.name}>
@@ -111,7 +112,7 @@ const Dashboard = () => {
           </div>
 
           {/* Display the satellite details */}
-          <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {gpsData.map((data) => (
               <GpsData key={data.title} data={data} />
             ))}
@@ -119,7 +120,7 @@ const Dashboard = () => {
         </div>
 
         {/* Display the weather */}
-        <div>
+        <div className="mt-4 sm:mt-4 md:mt-4 lg:mt-0">
           <Weather />
         </div>
       </div>
