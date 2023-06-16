@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import demo from '../data/demo.png';
 import Weather from './Weather';
 import Image from 'next/image';
+import { preview } from '@/assets';
+import Loader from './Loader';
 
 const GpsData = ({ data }) => (
   <div className="justify-start bg-gray-100 rounded-lg py-4">
@@ -19,6 +21,35 @@ const GpsData = ({ data }) => (
 );
 
 const Dashboard = () => {
+  const [image, setImage] = useState({
+    photo: '',
+  });
+  const [loading, setLoading] = useState(true);
+  const [generatingImg, setGeneratingImg] = useState(true);
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch(
+        'https://dalle-arbb.onrender.com/api/v1/dalle',
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+
+      const data = await response.json();
+      setImage({ ...image, photo: `data:image/jpeg;base64,${data.photo}` });
+      console.log(data);
+      if (data) {
+        setGeneratingImg(false);
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   const [gpsData, setGpsData] = useState([
     {
       title: 'GPS',
@@ -46,9 +77,9 @@ const Dashboard = () => {
     },
   ]);
 
-  // useEffect(() => {
-  //   generatePDFReport();
-  // }, []);
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <div className="md:mx-12 lg:mx-12 px-4">
@@ -58,12 +89,25 @@ const Dashboard = () => {
       >
         {/* Display the satellite image */}
         <div>
-          <div className="flex justify-center bg-blue-700 h-80 rounded-lg">
-            <Image
-              src={demo}
-              alt="your-image-alt-text-here"
-              className="w-full h-full object-contain"
-            />
+          <div className="relative bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-3 lg:h-96 md:h-96 flex sm:h-96 justify-center items-center">
+            {image.photo ? (
+              <Image
+                src={preview}
+                alt="preview"
+                className="w-9/12 h-full object-contain opacity-40"
+              />
+            ) : (
+              <Image
+                src={preview}
+                alt="preview"
+                className="w-9/12 h-full object-contain opacity-40"
+              />
+            )}
+            {generatingImg && (
+              <div className="absolute inset-0 z-0 flex justify-center items-center bg-[rgba(0,0,0,0.5)] rounded-lg">
+                <Loader />
+              </div>
+            )}
           </div>
 
           {/* Display the satellite details */}
