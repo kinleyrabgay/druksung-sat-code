@@ -9,32 +9,32 @@ const Weather = () => {
 
   useEffect(() => {
     async function fetchWeatherData() {
-      // try {
-      //   const lat = '26.8603';
-      //   const lon = '89.3938';
-      //   // get the locationKey
-      //   const locationData = await getLocationKey(lat, lon);
-      //   const weatherData = await getCurrentWeatherCondition(locationData.Key);
-      //   console.log(weatherData);
-      //   setWeather({
-      //     place: locationData.LocalizedName,
-      //     temperatureValue: weatherData[0].Temperature.Metric.Value,
-      //     temperatureUnit: weatherData[0].Temperature.Metric.Unit,
-      //     description: weatherData[0].WeatherText,
-      //     humidity: weatherData[0].RelativeHumidity,
-      //     icon: weatherData[0].WeatherIcon,
-      //     windDirection: weatherData[0].Wind.Direction.English,
-      //     windDirectionDegree: weatherData[0].Wind.Direction.Degrees,
-      //     windSpeed: weatherData[0].Wind.Speed.Metric.Value,
-      //     windSpeedValue: weatherData[0].Wind.Speed.Metric.Unit,
-      //   });
-      //   console.log(data.weather[0].icon);
-      //   console.log(data);
-      // } catch (error) {
-      //   console.error('Error fetching weather data:', error);
-      // } finally {
-      //   setIsLoading(false);
-      // }
+      try {
+        const lat = '26.8603';
+        const lon = '89.3938';
+        // get the locationKey
+        const locationData = await getLocationKey(lat, lon);
+        const weatherData = await getCurrentWeatherCondition(locationData.Key);
+        console.log(weatherData);
+        setWeather({
+          place: locationData.LocalizedName,
+          temperatureValue: weatherData[0].Temperature.Metric.Value,
+          temperatureUnit: weatherData[0].Temperature.Metric.Unit,
+          description: weatherData[0].WeatherText,
+          humidity: weatherData[0].RelativeHumidity,
+          icon: weatherData[0].WeatherIcon,
+          windDirection: weatherData[0].Wind.Direction.English,
+          windDirectionDegree: weatherData[0].Wind.Direction.Degrees,
+          windSpeed: weatherData[0].Wind.Speed.Metric.Value,
+          windSpeedValue: weatherData[0].Wind.Speed.Metric.Unit,
+        });
+        console.log(data.weather[0].icon);
+        console.log(data);
+      } catch (error) {
+        console.error('Error fetching weather data:', error);
+      } finally {
+        setIsLoading(false);
+      }
     }
 
     fetchWeatherData();
