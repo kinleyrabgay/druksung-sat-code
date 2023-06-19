@@ -12,7 +12,7 @@ const maps = () => {
   const position = [51.505, -0.09];
 
   return (
-    <div className="bg-gray-100 min-h-screen pt-12">
+    <div className="pt-12">
       <div className="flex justify-between p-4">
         <h2>Maps</h2>
         <h2>Welcome Back, Druksung</h2>

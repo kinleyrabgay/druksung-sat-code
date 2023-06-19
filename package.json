@@ -11,7 +11,7 @@
   "dependencies": {
     "@next/font": "13.1.2",
     "axios": "^1.4.0",
-    "chart.js": "^4.1.2",
+    "chart.js": "^4.3.0",
     "google-map-react": "^2.2.1",
     "next": "13.1.2",
     "pdf-lib": "^1.17.1",

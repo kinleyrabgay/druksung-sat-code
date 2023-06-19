@@ -3,10 +3,10 @@ import React, { useState, useEffect } from 'react';
 import { RxSketchLogo, RxDashboard, RxPerson } from 'react-icons/rx';
 import { HiOutlineDocumentReport } from 'react-icons/hi';
 import { FiSettings, FiLogOut, FiMenu } from 'react-icons/fi';
-import { FaGlobe } from 'react-icons/fa';
+import { FaGlobe, FaCloud, FaChartBar } from 'react-icons/fa';
 
 const Sidebar = ({ children }) => {
-  const [isMobile, setIsMobile] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   useEffect(() => {
@@ -45,6 +45,20 @@ const Sidebar = ({ children }) => {
               <Link href="/" onClick={toggleSidebar}>
                 <div className="bg-gray-100 hover:bg-gray-200 cursor-pointer my-4 p-3 rounded-lg inline-block">
                   <RxDashboard size={20} />
+                </div>
+              </Link>
+
+              {/* Add Chart */}
+              <Link href="/charts" onClick={toggleSidebar}>
+                <div className="bg-gray-100 hover:bg-gray-200 cursor-pointer my-4 p-3 rounded-lg inline-block">
+                  <FaChartBar size={20} />
+                </div>
+              </Link>
+
+              {/* Add Weather */}
+              <Link href="/weathers" onClick={toggleSidebar}>
+                <div className="bg-gray-100 hover:bg-gray-200 cursor-pointer my-4 p-3 rounded-lg inline-block">
+                  <FaCloud size={20} />
                 </div>
               </Link>
 
@@ -114,6 +128,20 @@ const Sidebar = ({ children }) => {
             <Link href="/">
               <div className="bg-gray-100 hover:bg-gray-200 cursor-pointer my-4 p-3 rounded-lg inline-block">
                 <RxDashboard size={20} />
+              </div>
+            </Link>
+
+            {/* Add Chart */}
+            <Link href="/charts" onClick={toggleSidebar}>
+              <div className="bg-gray-100 hover:bg-gray-200 cursor-pointer my-4 p-3 rounded-lg inline-block">
+                <FaChartBar size={20} />
+              </div>
+            </Link>
+
+            {/* Add Weather */}
+            <Link href="/weathers" onClick={toggleSidebar}>
+              <div className="bg-gray-100 hover:bg-gray-200 cursor-pointer my-4 p-3 rounded-lg inline-block">
+                <FaCloud size={20} />
               </div>
             </Link>
 

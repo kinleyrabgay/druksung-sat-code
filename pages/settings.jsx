@@ -1,13 +1,16 @@
 import React from 'react';
-import { BsPersonFill, BsThreeDotsVertical } from 'react-icons/bs';
-import { data } from '../data/data.js';
+import { ChartsHeader, LineChart } from '../components';
+import ScaterChart from '@/components/Charts/ScaterChart';
 
 const settings = () => {
   return (
-    <div className="bg-gray-100 min-h-screen pt-12">
-      <div className="flex justify-between p-4">
+    <div className="pt-12">
+      <div className="justify-between p-4">
         <h2>Settings</h2>
-        <h2>Welcome Back, Druksung</h2>
+        <ChartsHeader category="Line" title="Inflation Rate" />
+        <div className="w-full">
+          <ScaterChart />
+        </div>
       </div>
     </div>
   );

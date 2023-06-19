@@ -95,7 +95,15 @@ async function generatePDFReport() {
 }
 
 const Report = () => {
-  return <div></div>;
+  return (
+    <div>
+      {/* Machine learning */}
+      <div></div>
+
+      {/* Report generation */}
+      <div></div>
+    </div>
+  );
 };
 
 export default Report;

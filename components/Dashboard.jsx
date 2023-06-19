@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import demo from '../data/demo.png';
 import Weather from './Weather';
 import Image from 'next/image';
 import { preview } from '@/assets';
 import Loader from './Loader';
-// relative bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-3 lg:h-96 md:h-96 flex sm:h-96 justify-center items-center
+import LineChart from './Charts/LineChart';
 
 const GpsData = ({ data }) => (
-  <div className="justify-center bg-gray-50 border border-gray-300 text-gray-900 rounded-lg p-4">
+  <div
+    className="justify-center bg-gray-50 border border-gray-300 text-gray-900 rounded-lg p-4 
+  hover:transform hover:scale-105 transition-transform"
+  >
     <p className="text-black font-bold text-2xl text-center">{data.title}</p>
     <div className="border-b-1 border-gray-300 my-4" />
     <div className="grid grid-cols-2 mt-4 gap-y-4 gap-x-4">
@@ -29,26 +31,25 @@ const Dashboard = () => {
   const [generatingImg, setGeneratingImg] = useState(true);
 
   const fetchData = async () => {
-    try {
-      const response = await fetch(
-        'https://dalle-arbb.onrender.com/api/v1/dalle',
-        {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
-      );
-
-      const data = await response.json();
-      setImage({ ...image, photo: `data:image/jpeg;base64,${data.photo}` });
-      console.log(data);
-      if (data) {
-        setGeneratingImg(false);
-      }
-    } catch (e) {
-      console.error(e);
-    }
+    // try {
+    //   const response = await fetch(
+    //     'https://dalle-arbb.onrender.com/api/v1/dalle',
+    //     {
+    //       method: 'GET',
+    //       headers: {
+    //         'Content-Type': 'application/json',
+    //       },
+    //     }
+    //   );
+    //   const data = await response.json();
+    //   setImage({ ...image, photo: `data:image/jpeg;base64,${data.photo}` });
+    //   console.log(data);
+    //   if (data) {
+    //     setGeneratingImg(false);
+    //   }
+    // } catch (e) {
+    //   console.error(e);
+    // }
   };
 
   const [gpsData, setGpsData] = useState([
@@ -82,6 +83,19 @@ const Dashboard = () => {
     fetchData();
   }, []);
 
+  const data = [
+    {
+      x: [20],
+      y: [20],
+      z: [20],
+      mode: 'markers',
+      marker: {
+        size: 10,
+        color: 'red',
+      },
+    },
+  ];
+
   return (
     <div className="md:mx-12 lg:mx-12 px-4">
       <div
@@ -94,7 +108,7 @@ const Dashboard = () => {
             {image.photo ? (
               <Image
                 src={preview}
-                alt="preview"
+                alt="satellite-image"
                 className="w-9/12 h-full object-contain opacity-40"
               />
             ) : (
@@ -121,7 +135,12 @@ const Dashboard = () => {
 
         {/* Display the weather */}
         <div className="mt-4 sm:mt-4 md:mt-4 lg:mt-0">
-          <Weather />
+          <div>
+            <Weather />
+          </div>
+          <div className="">
+            <LineChart />
+          </div>
         </div>
       </div>
     </div>
